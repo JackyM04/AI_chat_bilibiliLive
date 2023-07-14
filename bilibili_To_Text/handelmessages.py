@@ -23,13 +23,14 @@ class handmessages:
         if (self.data["guard_only_mode"] and fans_data["guard_level"] == 0):
             return
         
-        fans_send_data = {
-            "uname": fans_data["uname"],
-            "fans_medal_wearing_status": fans_data["fans_medal_wearing_status"],
-            "guard_level": fans_data["guard_level"],
-            "msg": fans_data["msg"]
-        }
-        response = requests.post('http://127.0.0.1:10081/API/text_to_AI', fans_send_data)
+        fans_send_data = [
+            ("uname", fans_data["uname"]),
+            ("fans_medal_wearing_status", fans_data["fans_medal_wearing_status"]),
+            ("guard_level", fans_data["guard_level"]),
+            ("msg", fans_data["msg"])
+        ]
+         
+        response = requests.post(self.data['URL_text_to_ai'], fans_send_data)
         print("send_done")
 
 

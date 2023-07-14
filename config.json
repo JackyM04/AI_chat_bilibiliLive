@@ -1,0 +1,13 @@
+{
+    "key": "IyvvsXrggZx4InBNZsW6vTXw",
+    "secret": "1caOvEqyoA21xpeumjteKEQws4GAA3",
+    "appId": 1691055133468,
+    "idCode": "CRDJ32E6YIGW3",
+
+    "fans_medal_wearing_only_mode": false,
+    "guard_only_mode": false,
+
+    "URL_text_to_ai": "http://127.0.0.1:10081/API/text_to_AI",
+    "URL_ai_to_speak": "http://127.0.0.1:10082/API/AI_to_speak"
+
+}

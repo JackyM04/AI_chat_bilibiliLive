@@ -1,0 +1,2 @@
+stttt = []
+print(len(stttt))
