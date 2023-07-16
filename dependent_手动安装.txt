@@ -1,0 +1,16 @@
+#pytorch
+https://pytorch.org/
+
+pip install transformers
+            fastapi
+            uvicorn
+            edge-tts
+            pygame
+            pydub
+            playsound
+            readline
+            sentencepiece
+            accelerate
+
+            应该是这些吧
+

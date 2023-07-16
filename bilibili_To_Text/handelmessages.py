@@ -2,7 +2,7 @@ import json
 import requests
 class handmessages:
     def __init__(self) -> None:
-        with open('./config.json', 'r') as f:
+        with open('./config.json', 'r', encoding='utf-8') as f:
             self.data = json.load(f)
     async def sendmessage(self, message_dict: str):
         print(message_dict)
