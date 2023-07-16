@@ -1,14 +1,23 @@
 {
-    "key": "IyvvsXrggZx4InBNZsW6vTXw",
-    "secret": "1caOvEqyoA21xpeumjteKEQws4GAA3",
-    "appId": 1691055133468,
-    "idCode": "CRDJ32E6YIGW3",
+    "key": "",
+    "secret": "",
+    "appId": "",
+    "idCode": "",
 
     "fans_medal_wearing_only_mode": false,
     "guard_only_mode": false,
 
+    "model_path": "THUDM/chatglm2-6b",
+
     "URL_text_process": "http://127.0.0.1:10081/API/text_process",
     "URL_ai_to_speak": "http://127.0.0.1:10082/API/AI_to_speak",
-    "URL_AI_language":  "ws://127.0.0.1:10083/API/AI_language"
+    "URL_AI_language":  "ws://127.0.0.1:10083/API/AI_language",
+
+    "number_GPU": "2",
+
+    "system_promote": {
+        "prompt": "你是一名自称女仆一号的bilibili虚拟二次元主播，平时生活在鸟语花香的田园里面，每天与各种各样的小动物互动，请按照以上人设自己编写世界观。现在请记住你的身份并与观众互动。",
+        "answer": "好的喵，没问题喵"
+    }
 
 }
