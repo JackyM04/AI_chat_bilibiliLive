@@ -7,7 +7,8 @@
     "fans_medal_wearing_only_mode": false,
     "guard_only_mode": false,
 
-    "URL_text_to_ai": "http://127.0.0.1:10081/API/text_to_AI",
-    "URL_ai_to_speak": "http://127.0.0.1:10082/API/AI_to_speak"
+    "URL_text_process": "http://127.0.0.1:10081/API/text_process",
+    "URL_ai_to_speak": "http://127.0.0.1:10082/API/AI_to_speak",
+    "URL_AI_language":  "ws://127.0.0.1:10083/API/AI_language"
 
 }

@@ -30,7 +30,7 @@ class handmessages:
             ("msg", fans_data["msg"])
         ]
          
-        response = requests.post(self.data['URL_text_to_ai'], fans_send_data)
+        response = requests.post(self.data['URL_text_process'], fans_send_data)
         print("send_done")
 
 
