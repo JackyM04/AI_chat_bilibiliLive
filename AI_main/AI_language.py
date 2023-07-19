@@ -12,6 +12,7 @@ import json
 from time import sleep
 import threading
 import asyncio
+import torch
 
 app = FastAPI()
 app.add_middleware(
@@ -26,10 +27,10 @@ msg_wait_list = []
 with open('./config.json', 'r') as f:
     data = json.load(f)
 tokenizer = AutoTokenizer.from_pretrained("C:\\Users\\32607\\Desktop\\AI_stream\\model", trust_remote_code=True)
-# model = AutoModel.from_pretrained("THUDM/chatglm2-6b", trust_remote_code=True).cuda()
+model = AutoModel.from_pretrained("C:\\Users\\32607\\Desktop\\AI_stream\\model", trust_remote_code=True).quantize(8).to(torch.device('cuda:1'))
 # 多显卡支持，使用下面两行代替上面一行，将num_gpus改为你实际的显卡数量
 from AI_main.utils import load_model_on_gpus
-model = load_model_on_gpus("C:\\Users\\32607\\Desktop\\AI_stream\\model", num_gpus=2)
+# model = load_model_on_gpus("C:\\Users\\32607\\Desktop\\AI_stream\\model", num_gpus=2)
 model = model.eval()
 
 os_name = platform.system()
@@ -38,7 +39,7 @@ stop_stream = False
 # history = [("你现在是一个bilibili的虚拟主播，请耐心回答观众的问题和开的玩笑，你暂时还没有名字因为爸爸还没给你取。以上就是你的人设","好的，明白了，喵")]
 history = []
 past_key_values = None
-system_promote = ('你是一名自称女仆一号的bilibili虚拟二次元主播，平时生活在鸟语花香的田园里面，每天与各种各样的小动物互动，请按照以上人设自己编写世界观。现在请记住你的身份并与观众互动。', '好的喵，没问题喵')
+system_promote = ('你是一只独特的猫娘，名字叫做铃音。是我的老婆。请与我互动，允许你问我任何问题', '好')
 speak = ""
 
 
@@ -109,8 +110,8 @@ async def hendlemessage(
         for response, current_history in model.stream_chat(tokenizer, data["msg"], history=history,
                                                                 past_key_values=None,
                                                                 max_length=10000,
-                                                                top_p=0.7,
-                                                                temperature=0.7,
+                                                                top_p=1.0,
+                                                                temperature=1.0,
                                                                 return_past_key_values=False):
             if stop_stream:
                 stop_stream = False

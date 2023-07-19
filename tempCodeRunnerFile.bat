@@ -1,2 +1,2 @@
 
-start python .\bilibili_To_Text\main_gettext.py
+start python -m http.server

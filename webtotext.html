@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Speech Recognition</title>
+</head>
+<body>
+    <button id="btn">开始语音识别</button>
+    <p id="transcript"></p>
+
+    <script>
+        var recognition = new webkitSpeechRecognition();
+        recognition.lang = 'zh-CN';
+        recognition.interimResults = true;
+        recognition.continuous = true;
+
+        var isListening = false;
+        var transcriptText = '';
+
+        document.getElementById('btn').addEventListener('click', function() {
+            if (isListening) {
+                recognition.stop();
+                this.textContent = '开始语音识别';
+            } else {
+                recognition.start();
+                this.textContent = '停止语音识别';
+            }
+            isListening = !isListening;
+        });
+
+        recognition.onresult = function(event) {
+            var result = event.results[event.results.length-1];
+            transcriptText = result[0].transcript;
+            document.getElementById('transcript').textContent = transcriptText;
+            if (result.isFinal) {
+                sendData(transcriptText);
+                transcriptText = '';
+            }
+        };
+
+        recognition.onend = function() {
+            if (isListening) {
+                recognition.start();
+            }
+        };
+
+        recognition.onerror = function(event) {
+            alert('语音识别出错：' + event.error);
+        };
+
+        function sendData(text) {
+            var formData = new FormData();
+            formData.append('uname', "jacky Mo");
+            formData.append('fans_medal_wearing_status', true);
+            formData.append('guard_level', 1);
+            formData.append('msg', text);
+
+            fetch('http://127.0.0.1:10081/API/text_process', {
+                method: 'POST',
+                body: formData,
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                console.log("send_done");
+            }).catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+        }
+    </script>
+</body>
+</html>
